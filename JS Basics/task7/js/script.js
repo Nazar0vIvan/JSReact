@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     tabs.forEach((item) => {
       item.classList.remove("tabheader__item_active");
-      F;
     });
   }
 
