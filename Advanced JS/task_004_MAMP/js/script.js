@@ -2,7 +2,8 @@
 
 window.addEventListener("DOMContentLoaded", () => {
   
-  // TABS
+	// TABS
+
   const tabsParent = document.querySelector(".tabheader__items"),
         tabs = document.querySelectorAll(".tabheader__item"),
         tabsContent = document.querySelectorAll(".tabcontent");
@@ -39,10 +40,11 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // TIMER
-  const deadline = "2019-07-30";
+  
+  const deadline = "2024-07-30";
 
   function appendZero(num) {
-    return (num >= 0 && num < 10) ? `0${num}` : num;
+    return num >= 0 && num < 10 ? `0${num}` : num;
   }
 
   function getTimeRemaining(endtime) {
@@ -68,8 +70,8 @@ window.addEventListener("DOMContentLoaded", () => {
           minutes = timer.querySelector("#minutes"),
           seconds = timer.querySelector("#seconds"),
           timeInterval = setInterval(updateClock, 1000);
-    
-    updateClock(); // начальная установка часов 
+
+    updateClock(); // clock init
 
     function updateClock() {
       const remainingTime = getTimeRemaining(endtime);
@@ -80,14 +82,23 @@ window.addEventListener("DOMContentLoaded", () => {
       seconds.innerHTML = appendZero(remainingTime.seconds);
 
       if (remainingTime.total <= 0) clearInterval(timeInterval);
-    } 
+    }
   }
 
   setClock(".timer", deadline);
 
   // MODAL
+
+  /*
+    1. Открывается по нажатию кнопок "Связаться с нами"
+    2. Закрывается по нажатию на крестик, область вокруг модального окна или ESC
+    3. Открывается по таймеру через 5с
+    4. Открывается при скролле страницы до конца
+  */
+
   const modalTrigger = document.querySelectorAll("[data-modal]"),
-        modal = document.querySelector(".modal");
+        modal = document.querySelector(".modal"),
+        modalCloseBtn = document.querySelector("[data-close]");
 
   function openModal() {
     modal.classList.add("show");
@@ -106,8 +117,10 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
+  modalCloseBtn.addEventListener("click", closeModal);
+
   modal.addEventListener("click", (event) => {
-    if (event.target === modal || event.target.getAttribute("data-close") == "") {
+    if (event.target === modal) {
       closeModal();
     }
   });
@@ -115,10 +128,10 @@ window.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     if (event.code === "Escape" && modal.classList.contains("show")) {
       closeModal();
-    } 
+    }
   });
 
-const modalTimerId = setTimeout(openModal, 50000);
+  const modalTimerId = setTimeout(openModal, 5000);
 
   function showModalByScroll() {
     if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
@@ -126,11 +139,11 @@ const modalTimerId = setTimeout(openModal, 50000);
       window.removeEventListener("scroll", showModalByScroll);
     }
   }
-  
+
   window.addEventListener("scroll", showModalByScroll);
 
   // CLASSES FOR PRODUCT CARDS
-
+  
   class CardMenu {
     constructor(src, alt, title, desc, price, parentSelector) {
       this.src = src;

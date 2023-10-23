@@ -3,6 +3,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   
   // TABS
+
   const tabsParent = document.querySelector(".tabheader__items"),
         tabs = document.querySelectorAll(".tabheader__item"),
         tabsContent = document.querySelectorAll(".tabcontent");
@@ -39,10 +40,11 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // TIMER
-  const deadline = "2019-07-30";
+  
+  const deadline = "2024-07-30";
 
   function appendZero(num) {
-    return (num >= 0 && num < 10) ? `0${num}` : num;
+    return num >= 0 && num < 10 ? `0${num}` : num;
   }
 
   function getTimeRemaining(endtime) {
@@ -68,8 +70,8 @@ window.addEventListener("DOMContentLoaded", () => {
           minutes = timer.querySelector("#minutes"),
           seconds = timer.querySelector("#seconds"),
           timeInterval = setInterval(updateClock, 1000);
-    
-    updateClock(); // начальная установка часов 
+
+    updateClock(); // clock init
 
     function updateClock() {
       const remainingTime = getTimeRemaining(endtime);
@@ -80,14 +82,23 @@ window.addEventListener("DOMContentLoaded", () => {
       seconds.innerHTML = appendZero(remainingTime.seconds);
 
       if (remainingTime.total <= 0) clearInterval(timeInterval);
-    } 
+    }
   }
 
   setClock(".timer", deadline);
 
   // MODAL
+
+  /*
+    1. Открывается по нажатию кнопок "Связаться с нами"
+    2. Закрывается по нажатию на крестик, область вокруг модального окна или ESC
+    3. Открывается по таймеру через 5с
+    4. Открывается при скролле страницы до конца
+  */
+
   const modalTrigger = document.querySelectorAll("[data-modal]"),
-        modal = document.querySelector(".modal");
+    modal = document.querySelector(".modal"),
+    modalCloseBtn = document.querySelector("[data-close]");
 
   function openModal() {
     modal.classList.add("show");
@@ -106,8 +117,10 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
+  modalCloseBtn.addEventListener("click", closeModal);
+
   modal.addEventListener("click", (event) => {
-    if (event.target === modal || event.target.getAttribute("data-close") == "") {
+    if (event.target === modal) {
       closeModal();
     }
   });
@@ -115,10 +128,10 @@ window.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     if (event.code === "Escape" && modal.classList.contains("show")) {
       closeModal();
-    } 
+    }
   });
 
-const modalTimerId = setTimeout(openModal, 50000);
+  const modalTimerId = setTimeout(openModal, 5000);
 
   function showModalByScroll() {
     if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
@@ -126,7 +139,7 @@ const modalTimerId = setTimeout(openModal, 50000);
       window.removeEventListener("scroll", showModalByScroll);
     }
   }
-  
+
   window.addEventListener("scroll", showModalByScroll);
 
   // CLASSES FOR PRODUCT CARDS
@@ -200,16 +213,16 @@ const modalTimerId = setTimeout(openModal, 50000);
     loading: "img/form/spinner.svg",
     success: "Спасибо, скоро мы с Вами свяжемся",
     failure: "Ошибка",
-  }
+  };
 
-  forms.forEach(item => {
+  forms.forEach((item) => {
     postData(item);
   });
 
   function postData(form) {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      
+
       const statusMessage = document.createElement("img");
       statusMessage.src = message.loading;
       statusMessage.style.cssText = `
@@ -219,14 +232,12 @@ const modalTimerId = setTimeout(openModal, 50000);
       form.insertAdjacentElement("afterend", statusMessage);
 
       const formData = new FormData(form);
-      
+
       const obj = {};
-      formData.forEach(function(value, key){
+      formData.forEach(function (value, key) {
         obj[key] = value;
       });
 
-      console.log(obj);
-    
       fetch("server.php", {
         method: "POST",
         headers: {
@@ -234,16 +245,18 @@ const modalTimerId = setTimeout(openModal, 50000);
         },
         body: JSON.stringify(obj),
       })
-      .then(data => data.text())
-      .then(data => {
+      .then((data) => data.text())
+      .then((data) => {
         console.log(data);
         showThanksModal(message.success);
         statusMessage.remove();
-      }).catch(() => {
-        showThanksModal(message.failure);
-      }).finally(() => {
-        form.reset();
       })
+      .catch(() => {
+        showThanksModal(message.failure);
+      })
+      .finally(() => {
+        form.reset();
+      });
     });
   }
 
@@ -272,4 +285,3 @@ const modalTimerId = setTimeout(openModal, 50000);
     }, 4000);
   }
 });
-

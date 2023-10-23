@@ -2,7 +2,8 @@
 
 window.addEventListener("DOMContentLoaded", () => {
   
-  // TABS
+	// TABS
+
   const tabsParent = document.querySelector(".tabheader__items"),
         tabs = document.querySelectorAll(".tabheader__item"),
         tabsContent = document.querySelectorAll(".tabcontent");
@@ -39,10 +40,11 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // TIMER
-  const deadline = "2019-07-30";
+  
+  const deadline = "2024-07-30";
 
   function appendZero(num) {
-    return (num >= 0 && num < 10) ? `0${num}` : num;
+    return num >= 0 && num < 10 ? `0${num}` : num;
   }
 
   function getTimeRemaining(endtime) {
@@ -51,8 +53,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (total <= 0) {
       days = hours = minutes = seconds = 0;
-    }
-    else {
+    } else {
       days = Math.floor(total / (1000 * 60 * 60 * 24));
       hours = Math.floor((total / (1000 * 60 * 60)) % 24);
       minutes = Math.floor((total / (1000 * 60)) % 60);
@@ -69,8 +70,8 @@ window.addEventListener("DOMContentLoaded", () => {
           minutes = timer.querySelector("#minutes"),
           seconds = timer.querySelector("#seconds"),
           timeInterval = setInterval(updateClock, 1000);
-    
-    updateClock(); // начальная установка часов 
+
+    updateClock(); // clock init
 
     function updateClock() {
       const remainingTime = getTimeRemaining(endtime);
@@ -81,13 +82,9 @@ window.addEventListener("DOMContentLoaded", () => {
       seconds.innerHTML = appendZero(remainingTime.seconds);
 
       if (remainingTime.total <= 0) clearInterval(timeInterval);
-    } 
+    }
   }
 
   setClock(".timer", deadline);
+  
 });
-
-
-
-
-

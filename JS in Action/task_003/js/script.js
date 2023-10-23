@@ -1,9 +1,11 @@
 "use strict";
 
+// TABS
+
 window.addEventListener("DOMContentLoaded", () => {
   const tabsParent = document.querySelector(".tabheader__items"),
-        tabs = document.querySelectorAll(".tabheader__item"),
-        tabsContent = document.querySelectorAll(".tabcontent");
+    tabs = document.querySelectorAll(".tabheader__item"),
+    tabsContent = document.querySelectorAll(".tabcontent");
 
   function hideTabContent() {
     tabsContent.forEach((item) => {
@@ -35,4 +37,5 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+  
 });
