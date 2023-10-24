@@ -15,7 +15,6 @@ const lastMovie1 = prompt("Один из последних просмотрен
       lastMovie2 = prompt("Один из последних просмотренных фильмов?",""),
       raiting2 = prompt("На сколько оцените его?","");
 
-
 personalMoviewDB.movies[lastMovie1] = raiting1;
 personalMoviewDB.movies[lastMovie2] = raiting2;
 

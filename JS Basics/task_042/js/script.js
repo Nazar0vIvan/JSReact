@@ -19,13 +19,7 @@ P.S. Здесь есть несколько вариантов решения з
 
 document.addEventListener("DOMContentLoaded", () => {
   const movieDB = {
-    movies: [
-      "Логан",
-      "Лига справедливости",
-      "Ла-ла лэнд",
-      "Одержимость",
-      "Скотт Пилигрим против...",
-    ],
+    movies: ["Логан", "Лига справедливости", "Ла-ла лэнд", "Одержимость", "Скотт Пилигрим против..."],
   };
 
   function deleteAdv() {
@@ -55,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         movieDB.movies.splice(i, 1);
         createMoviesList(moviesNames);
       });
-    }); 
+    });
   }
 
   (function initPage() {
@@ -69,8 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1
   (function createMovieAdditionFunctional() {
     const addForm = document.querySelector("form.add"),
-          addInput = addForm.querySelector(".adding__input"),
-          checkbox = addForm.querySelector("[type='checkbox']");
+      addInput = addForm.querySelector(".adding__input"),
+      checkbox = addForm.querySelector("[type='checkbox']");
 
     addForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -89,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         movieDB.movies.push(newMovie);
         movieDB.movies.sort();
-        createMoviesList(movieDB.movies); 
+        createMoviesList(movieDB.movies);
       }
 
       event.target.reset();

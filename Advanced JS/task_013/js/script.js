@@ -4,8 +4,8 @@ window.addEventListener("DOMContentLoaded", () => {
   // TABS
 
   const tabsParent = document.querySelector(".tabheader__items"),
-        tabs = document.querySelectorAll(".tabheader__item"),
-        tabsContent = document.querySelectorAll(".tabcontent");
+    tabs = document.querySelectorAll(".tabheader__item"),
+    tabsContent = document.querySelectorAll(".tabcontent");
 
   function hideTabContent() {
     tabsContent.forEach((item) => {
@@ -65,10 +65,10 @@ window.addEventListener("DOMContentLoaded", () => {
   function setClock(selector, endtime) {
     const timer = document.querySelector(selector);
     const days = timer.querySelector("#days"),
-          hours = timer.querySelector("#hours"),
-          minutes = timer.querySelector("#minutes"),
-          seconds = timer.querySelector("#seconds"),
-          timeInterval = setInterval(updateClock, 1000);
+      hours = timer.querySelector("#hours"),
+      minutes = timer.querySelector("#minutes"),
+      seconds = timer.querySelector("#seconds"),
+      timeInterval = setInterval(updateClock, 1000);
 
     updateClock(); // clock init
 
@@ -96,8 +96,8 @@ window.addEventListener("DOMContentLoaded", () => {
   */
 
   const modalTrigger = document.querySelectorAll("[data-modal]"),
-        modal = document.querySelector(".modal"),
-        modalCloseBtn = document.querySelector("[data-close]");
+    modal = document.querySelector(".modal"),
+    modalCloseBtn = document.querySelector("[data-close]");
 
   function openModal() {
     modal.classList.add("show");
@@ -133,10 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   function showModalByScroll() {
-    if (
-      window.scrollY + document.documentElement.clientHeight >=
-      document.documentElement.scrollHeight - 1
-    ) {
+    if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
       openModal();
       window.removeEventListener("scroll", showModalByScroll);
     }
@@ -182,14 +179,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   axios.get("http://localhost:3000/menu").then((axiosResponce) => {
     axiosResponce.data.forEach(({ img, altimg, title, descr, price }) => {
-      new CardMenu(
-        img,
-        altimg,
-        title,
-        descr,
-        price,
-        ".menu .container"
-      ).render();
+      new CardMenu(img, altimg, title, descr, price, ".menu .container").render();
     });
   });
 
@@ -273,13 +263,13 @@ window.addEventListener("DOMContentLoaded", () => {
   // SLIDER
 
   const slides = document.querySelectorAll(".offer__slide"),
-        prev = document.querySelector(".offer__slider-prev"),
-        next = document.querySelector(".offer__slider-next"),
-        total = document.querySelector("#total"),
-        current = document.querySelector("#current"),
-        slidesWrapper = document.querySelector(".offer__slider-wrapper"),
-        slidesField = document.querySelector(".offer__slider-inner"),
-        width = window.getComputedStyle(slidesWrapper).width;
+    prev = document.querySelector(".offer__slider-prev"),
+    next = document.querySelector(".offer__slider-next"),
+    total = document.querySelector("#total"),
+    current = document.querySelector("#current"),
+    slidesWrapper = document.querySelector(".offer__slider-wrapper"),
+    slidesField = document.querySelector(".offer__slider-inner"),
+    width = window.getComputedStyle(slidesWrapper).width;
 
   let slideIndex = 1;
   let offset = 0;
@@ -287,44 +277,60 @@ window.addEventListener("DOMContentLoaded", () => {
   if (slides.length < 10) {
     total.textContent = `0${slides.length}`;
     current.textContent = `0${slideIndex}`;
-
   } else {
     total.textContent = slides.length;
     current.textContent = slideIndex;
   }
 
-  slidesField.style.width = 100 * slides.length + '%'
+  slidesField.style.width = 100 * slides.length + "%";
   slidesField.style.display = "flex";
   slidesField.style.transition = "0.5s all";
 
   slidesWrapper.style.overflow = "hidden";
 
-  slides.forEach(slide => {
+  slides.forEach((slide) => {
     slide.style.width = width;
   });
 
   next.addEventListener("click", () => {
-    if (offset == +width.slice(0, width.length-2) * (slides.length - 1)) {
+    if (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
       offset = 0;
     } else {
-      offset += +width.slice(0, width.length-2);
+      offset += +width.slice(0, width.length - 2);
     }
     slidesField.style.transform = `translateX(-${offset}px)`;
 
-    slideIndex = slideIndex == slides.length ? 1 : slideIndex+1;
-    current.textContent = slides.length < 10 ? `0${slideIndex}` : slideIndex;
+    if (slideIndex == slides.length) {
+      slideIndex = 1;
+    } else {
+      slideIndex++;
+    }
+
+    if (slides.length < 10) {
+      current.textContent = `0${slideIndex}`;
+    } else {
+      current.textContent = slideIndex;
+    }
   });
 
   prev.addEventListener("click", () => {
     if (offset == 0) {
-      offset = +width.slice(0, width.length-2) * (slides.length - 1);
+      offset = +width.slice(0, width.length - 2) * (slides.length - 1);
     } else {
-      offset -= +width.slice(0, width.length-2);
+      offset -= +width.slice(0, width.length - 2);
     }
     slidesField.style.transform = `translateX(-${offset}px)`;
 
-    slideIndex = slideIndex == 1 ? slides.length : slideIndex-1;
-    current.textContent = slides.length < 10 ? `0${slideIndex}` : slideIndex;
-  });
+    if (slideIndex == 1) {
+      slideIndex = slides.length;
+    } else {
+      slideIndex--;
+    }
 
+    if (slides.length < 10) {
+      current.textContent = `0${slideIndex}`;
+    } else {
+      current.textContent = slideIndex;
+    }
+  });
 });

@@ -1,12 +1,11 @@
 "use strict";
 
 window.addEventListener("DOMContentLoaded", () => {
-  
   // TABS
 
   const tabsParent = document.querySelector(".tabheader__items"),
-        tabs = document.querySelectorAll(".tabheader__item"),
-        tabsContent = document.querySelectorAll(".tabcontent");
+    tabs = document.querySelectorAll(".tabheader__item"),
+    tabsContent = document.querySelectorAll(".tabcontent");
 
   function hideTabContent() {
     tabsContent.forEach((item) => {
@@ -40,7 +39,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // TIMER
-  
+
   const deadline = "2024-07-30";
 
   function appendZero(num) {
@@ -66,10 +65,10 @@ window.addEventListener("DOMContentLoaded", () => {
   function setClock(selector, endtime) {
     const timer = document.querySelector(selector);
     const days = timer.querySelector("#days"),
-          hours = timer.querySelector("#hours"),
-          minutes = timer.querySelector("#minutes"),
-          seconds = timer.querySelector("#seconds"),
-          timeInterval = setInterval(updateClock, 1000);
+      hours = timer.querySelector("#hours"),
+      minutes = timer.querySelector("#minutes"),
+      seconds = timer.querySelector("#seconds"),
+      timeInterval = setInterval(updateClock, 1000);
 
     updateClock(); // clock init
 
@@ -245,18 +244,18 @@ window.addEventListener("DOMContentLoaded", () => {
         },
         body: JSON.stringify(obj),
       })
-      .then((data) => data.text())
-      .then((data) => {
-        console.log(data);
-        showThanksModal(message.success);
-        statusMessage.remove();
-      })
-      .catch(() => {
-        showThanksModal(message.failure);
-      })
-      .finally(() => {
-        form.reset();
-      });
+        .then((data) => data.text())
+        .then((data) => {
+          console.log(data);
+          showThanksModal(message.success);
+          statusMessage.remove();
+        })
+        .catch(() => {
+          showThanksModal(message.failure);
+        })
+        .finally(() => {
+          form.reset();
+        });
     });
   }
 

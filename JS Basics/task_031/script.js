@@ -15,10 +15,10 @@ let personalMovieDB = {
   },
   rememberMyFilms: function () {
     for (let i = 0; i < 2; i++) {
-      const lastMovie = prompt("Один из последних просмотренных фильмов?","");
-      const raiting = prompt("На сколько оцените его?","");
-  
-      if(lastMovie != null && raiting != null && lastMovie != "" && raiting != "" && lastMovie.length < 50){
+      const lastMovie = prompt("Один из последних просмотренных фильмов?", "");
+      const raiting = prompt("На сколько оцените его?", "");
+
+      if (lastMovie != null && raiting != null && lastMovie != "" && raiting != "" && lastMovie.length < 50) {
         personalMovieDB.movies[lastMovie] = raiting;
       } else {
         i--;

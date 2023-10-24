@@ -4,8 +4,8 @@ window.addEventListener("DOMContentLoaded", () => {
   // TABS
 
   const tabsParent = document.querySelector(".tabheader__items"),
-        tabs = document.querySelectorAll(".tabheader__item"),
-        tabsContent = document.querySelectorAll(".tabcontent");
+    tabs = document.querySelectorAll(".tabheader__item"),
+    tabsContent = document.querySelectorAll(".tabcontent");
 
   function hideTabContent() {
     tabsContent.forEach((item) => {
@@ -65,10 +65,10 @@ window.addEventListener("DOMContentLoaded", () => {
   function setClock(selector, endtime) {
     const timer = document.querySelector(selector);
     const days = timer.querySelector("#days"),
-          hours = timer.querySelector("#hours"),
-          minutes = timer.querySelector("#minutes"),
-          seconds = timer.querySelector("#seconds"),
-          timeInterval = setInterval(updateClock, 1000);
+      hours = timer.querySelector("#hours"),
+      minutes = timer.querySelector("#minutes"),
+      seconds = timer.querySelector("#seconds"),
+      timeInterval = setInterval(updateClock, 1000);
 
     updateClock(); // clock init
 
@@ -96,8 +96,8 @@ window.addEventListener("DOMContentLoaded", () => {
   */
 
   const modalTrigger = document.querySelectorAll("[data-modal]"),
-        modal = document.querySelector(".modal"),
-        modalCloseBtn = document.querySelector("[data-close]");
+    modal = document.querySelector(".modal"),
+    modalCloseBtn = document.querySelector("[data-close]");
 
   function openModal() {
     modal.classList.add("show");
@@ -133,10 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   function showModalByScroll() {
-    if (
-      window.scrollY + document.documentElement.clientHeight >=
-      document.documentElement.scrollHeight - 1
-    ) {
+    if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
       openModal();
       window.removeEventListener("scroll", showModalByScroll);
     }
@@ -182,14 +179,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   axios.get("http://localhost:3000/menu").then((axiosResponce) => {
     axiosResponce.data.forEach(({ img, altimg, title, descr, price }) => {
-      new CardMenu(
-        img,
-        altimg,
-        title,
-        descr,
-        price,
-        ".menu .container"
-      ).render();
+      new CardMenu(img, altimg, title, descr, price, ".menu .container").render();
     });
   });
 
@@ -273,10 +263,10 @@ window.addEventListener("DOMContentLoaded", () => {
   // SLIDER
 
   const slides = document.querySelectorAll(".offer__slide"),
-        prev = document.querySelector(".offer__slider-prev"),
-        next = document.querySelector(".offer__slider-next"),
-        total = document.querySelector("#total"),
-        current = document.querySelector("#current");
+    prev = document.querySelector(".offer__slider-prev"),
+    next = document.querySelector(".offer__slider-next"),
+    total = document.querySelector("#total"),
+    current = document.querySelector("#current");
   let slideIndex = 1;
 
   showSlides(slideIndex);

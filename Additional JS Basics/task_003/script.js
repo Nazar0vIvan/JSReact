@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 Оператор опциональной цепочки (Optional chaining operator) - ?.
@@ -10,7 +10,7 @@
 
 "-"
 1) Оператор работает только на чтение
-*/ 
+*/
 
 const adventurer = {
   name: "Alice",
@@ -22,5 +22,5 @@ const adventurer = {
 
 console.log(adventurer?.name); // "Alice"
 console.log(adventurer?.food); // undefined
-console.log(adventurer.dog?.name); // undefined 
+console.log(adventurer.dog?.name); // undefined
 console.log(adventurer.someNonExistentMethod?.()); // undefined

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 Живые и неживые (статические) коллекции:
@@ -9,13 +9,13 @@ Live and non-live (static) collections
 */
 
 // NodeList (with methods)
-const boxesQuery = document.querySelectorAll(".box"); 
+const boxesQuery = document.querySelectorAll(".box");
 // HTMLCollection (without methods)
-const boxesGet = document.getElementsByClassName("box"); 
+const boxesGet = document.getElementsByClassName("box");
 
-boxesQuery[0].remove(); // [div.box, div.box, div.box] - NodeList игнорирует изменени в DOM 
+boxesQuery[0].remove(); // [div.box, div.box, div.box] - NodeList игнорирует изменени в DOM
 boxesGet[0].remove();   // [div.box] - HTMLCollection меняется в соответ ствии с DOM
 
-// Чтобы добавить методы в живую коллекцию, её можно конвертировать в Array, 
+// Чтобы добавить методы в живую коллекцию, её можно конвертировать в Array,
 // но коллекция становится статической
 console.log(Array.from(boxesGet));

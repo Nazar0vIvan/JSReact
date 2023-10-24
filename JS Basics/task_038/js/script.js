@@ -15,13 +15,7 @@
 "use strict";
 
 const movieDB = {
-  movies: [
-    "Логан",
-    "Лига справедливости",
-    "Ла-ла лэнд",
-    "Одержимость",
-    "Скотт Пилигрим против...",
-  ],
+  movies: ["Логан", "Лига справедливости", "Ла-ла лэнд", "Одержимость", "Скотт Пилигрим против..."],
 };
 
 // 1
@@ -44,11 +38,11 @@ function changeMoviesList(moviesNames) {
   moviesList.innerHTML = "";
   moviesNames.sort().forEach((movie, i) => {
     moviesList.innerHTML += `
-      <li class="promo__interactive-item">${i+1} ${movie}
+      <li class="promo__interactive-item">${i + 1} ${movie}
         <div class="delete"></div>
       </li>
     `;
   });
-};
+}
 
 changeMoviesList(movieDB.movies);

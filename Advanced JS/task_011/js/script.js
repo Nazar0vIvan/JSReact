@@ -1,12 +1,11 @@
 "use strict";
 
 window.addEventListener("DOMContentLoaded", () => {
-
   // TABS
 
   const tabsParent = document.querySelector(".tabheader__items"),
-        tabs = document.querySelectorAll(".tabheader__item"),
-        tabsContent = document.querySelectorAll(".tabcontent");
+    tabs = document.querySelectorAll(".tabheader__item"),
+    tabsContent = document.querySelectorAll(".tabcontent");
 
   function hideTabContent() {
     tabsContent.forEach((item) => {
@@ -66,10 +65,10 @@ window.addEventListener("DOMContentLoaded", () => {
   function setClock(selector, endtime) {
     const timer = document.querySelector(selector);
     const days = timer.querySelector("#days"),
-          hours = timer.querySelector("#hours"),
-          minutes = timer.querySelector("#minutes"),
-          seconds = timer.querySelector("#seconds"),
-          timeInterval = setInterval(updateClock, 1000);
+      hours = timer.querySelector("#hours"),
+      minutes = timer.querySelector("#minutes"),
+      seconds = timer.querySelector("#seconds"),
+      timeInterval = setInterval(updateClock, 1000);
 
     updateClock(); // clock init
 
@@ -194,8 +193,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   */
 
-  axios.get("http://localhost:3000/menu")
-  .then(axiosResponce => {
+  axios.get("http://localhost:3000/menu").then((axiosResponce) => {
     axiosResponce.data.forEach(({ img, altimg, title, descr, price }) => {
       new CardMenu(img, altimg, title, descr, price, ".menu .container").render();
     });
