@@ -1,1 +1,1 @@
-<h3>Перевод модулей проекта с CommonJS (CJS) на ECMAScript Modules (ESM)
+Перевод модулей проекта с CommonJS (CJS) на ECMAScript Modules (ESM)
