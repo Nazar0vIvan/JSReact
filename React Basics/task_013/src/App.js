@@ -1,4 +1,4 @@
-import { Component, Fragment } from "react";
+import { Component } from "react";
 import "./App.css";
 
 class WhoAmI extends Component {
