@@ -1,1 +1,0 @@
-Перевод модулей проекта с CommonJS (CJS) на ECMAScript Modules (ESM)

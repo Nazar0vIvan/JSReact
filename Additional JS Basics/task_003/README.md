@@ -1,0 +1,1 @@
+### Оператор опциональной цепочки (Optional chaining operator) - ?.
