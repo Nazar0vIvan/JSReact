@@ -3,7 +3,6 @@
 let personalMovieDB = {
   count: 0,
   movies: {},
-  actors: {},
   genres: [],
   private: false,
   start: function () {
