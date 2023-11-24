@@ -1,206 +1,42 @@
 "use strict";
 
-window.addEventListener("DOMContentLoaded", () => {
-  // TABS
+require("es6-promise").polyfill();
+import "nodelist-foreach-polyfill";
 
-  const tabsParent = document.querySelector(".tabheader__items"),
-    tabs = document.querySelectorAll(".tabheader__item"),
-    tabsContent = document.querySelectorAll(".tabcontent");
+import tabs from "./modules/tabs";
+import modal from "./modules/modal";
+import timer from "./modules/timer";
+import cards from "./modules/cards";
+import calc from "./modules/calc";
+import forms from "./modules/forms";
+import slider from "./modules/slider";
+import { openModal } from "./modules/modal";
 
-  function hideTabContent() {
-    tabsContent.forEach((item) => {
-      item.classList.add("hide");
-      item.classList.remove("show", "fade");
-    });
-    tabs.forEach((item) => {
-      item.classList.remove("tabheader__item_active");
-    });
-  }
+window.addEventListener("DOMContentLoaded", function () {
+  const modalTimerId = setTimeout(
+    () => openModal(".modal", modalTimerId),
+    50000
+  );
 
-  function showTabContent(i = 0) {
-    tabsContent[i].classList.add("show", "fade");
-    tabsContent[i].classList.remove("hide");
-    tabs[i].classList.add("tabheader__item_active");
-  }
-
-  hideTabContent();
-  showTabContent();
-
-  tabsParent.addEventListener("click", (event) => {
-    const target = event.target;
-    if (target && target.classList.contains("tabheader__item")) {
-      tabs.forEach((item, i) => {
-        if (target == item) {
-          hideTabContent();
-          showTabContent(i);
-        }
-      });
-    }
+  tabs(
+    ".tabheader__item",
+    ".tabcontent",
+    ".tabheader__items",
+    "tabheader__item_active"
+  );
+  modal("[data-modal]", ".modal", modalTimerId);
+  timer(".timer", "2024-06-11");
+  cards();
+  calc();
+  forms("form", modalTimerId);
+  slider({
+    container: ".offer__slider",
+    slide: ".offer__slide",
+    nextArrow: ".offer__slider-next",
+    prevArrow: ".offer__slider-prev",
+    totalCounter: "#total",
+    currentCounter: "#current",
+    wrapper: ".offer__slider-wrapper",
+    field: ".offer__slider-inner",
   });
-
-  // TIMER
-
-  const deadline = "2024-07-30";
-
-  function appendZero(num) {
-    return num >= 0 && num < 10 ? `0${num}` : num;
-  }
-
-  function getTimeRemaining(endtime) {
-    let days, hours, minutes, seconds;
-    const total = Date.parse(endtime) - Date.parse(new Date());
-
-    if (total <= 0) {
-      days = hours = minutes = seconds = 0;
-    } else {
-      days = Math.floor(total / (1000 * 60 * 60 * 24));
-      hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-      minutes = Math.floor((total / (1000 * 60)) % 60);
-      seconds = Math.floor((total / 1000) % 60);
-    }
-
-    return { total, days, hours, minutes, seconds };
-  }
-
-  function setClock(selector, endtime) {
-    const timer = document.querySelector(selector);
-    const days = timer.querySelector("#days"),
-      hours = timer.querySelector("#hours"),
-      minutes = timer.querySelector("#minutes"),
-      seconds = timer.querySelector("#seconds"),
-      timeInterval = setInterval(updateClock, 1000);
-
-    updateClock(); // clock init
-
-    function updateClock() {
-      const remainingTime = getTimeRemaining(endtime);
-
-      days.innerHTML = appendZero(remainingTime.days);
-      hours.innerHTML = appendZero(remainingTime.hours);
-      minutes.innerHTML = appendZero(remainingTime.minutes);
-      seconds.innerHTML = appendZero(remainingTime.seconds);
-
-      if (remainingTime.total <= 0) clearInterval(timeInterval);
-    }
-  }
-
-  setClock(".timer", deadline);
-
-  // MODAL
-
-  /*
-    1. Открывается по нажатию кнопок "Связаться с нами"
-    2. Закрывается по нажатию на крестик, область вокруг модального окна или ESC
-    3. Открывается по таймеру через 5с
-    4. Открывается при скролле страницы до конца
-  */
-
-  const modalTrigger = document.querySelectorAll("[data-modal]"),
-    modal = document.querySelector(".modal"),
-    modalCloseBtn = document.querySelector("[data-close]");
-
-  function openModal() {
-    modal.classList.add("show");
-    modal.classList.remove("hide");
-    document.body.style.overflow = "hidden";
-    clearInterval(modalTimerId);
-  }
-
-  modalTrigger.forEach((btn) => {
-    btn.addEventListener("click", openModal);
-  });
-
-  function closeModal() {
-    modal.classList.add("hide");
-    modal.classList.remove("show");
-    document.body.style.overflow = "";
-  }
-
-  modalCloseBtn.addEventListener("click", closeModal);
-
-  modal.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "Escape" && modal.classList.contains("show")) {
-      closeModal();
-    }
-  });
-
-  const modalTimerId = setTimeout(openModal, 5000);
-
-  function showModalByScroll() {
-    if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
-      openModal();
-      window.removeEventListener("scroll", showModalByScroll);
-    }
-  }
-
-  window.addEventListener("scroll", showModalByScroll);
-
-  // CLASSES FOR PRODUCT CARDS
-
-  class CardMenu {
-    constructor(src, alt, title, desc, price, parentSelector) {
-      this.src = src;
-      this.alt = alt;
-      this.title = title;
-      this.desc = desc;
-      this.price = price;
-      this.parent = document.querySelector(parentSelector);
-      this.transfer = 80;
-      this.priceToRUB();
-    }
-
-    priceToRUB() {
-      this.price *= this.transfer;
-    }
-
-    render() {
-      const element = document.createElement("div");
-      element.innerHTML = `
-        <div class="menu__item">
-          <img src=${this.src} alt=${this.alt}>
-          <h3 class="menu__item-subtitle">${this.title}</h3>
-          <div class="menu__item-descr">${this.desc}</div>
-          <div class="menu__item-divider"></div>
-          <div class="menu__item-price">
-              <div class="menu__item-cost">Цена:</div>
-              <div class="menu__item-total"><span>${this.price}</span> руб/день</div>
-          </div>
-        </div>
-      `;
-      this.parent.append(element);
-    }
-  }
-
-  new CardMenu(
-    "img/tabs/vegy.jpg",
-    "vegy",
-    "Меню 'Фитнес'",
-    "Меню 'Фитнес' - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!",
-    9,
-    ".menu .container"
-  ).render();
-
-  new CardMenu(
-    "img/tabs/elite.jpg",
-    "elite",
-    "Меню 'Премиум'",
-    "Меню 'Премиум' мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
-    11,
-    ".menu .container"
-  ).render();
-
-  new CardMenu(
-    "img/tabs/post.jpg",
-    "post",
-    "Меню 'Постное'",
-    "Меню '“Постное”' - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
-    7,
-    ".menu .container"
-  ).render();
 });
