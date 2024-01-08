@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MusicTones</title>
+  <link rel="stylesheet" href="static/styles/style.css">
+  <link rel="icon" href="static/images/favicon.ico">
+  <script src="js/slider.js" defer></script>
+</head>
+
+<body>
+  <header class="header container">
+      <a href="index.html" class="logo-text">
+        <p class="logo-text__music">Music</p>
+        <p class="logo-text__tones">Tones</p>
+      </a>
+      
+      <nav class="header-nav">
+          <a href="#" class="header-nav__link anim-white">THEORY
+            <img src="static/images/nav-dropdown-arrow.svg">
+          </a>
+          <a href="#" class="header-nav__link anim-white">PRACTICE
+            <img src="static/images/nav-dropdown-arrow.svg">
+          </a>
+          <a href="#" class="header-nav__link anim-white">QUIZ</a>
+          <a href="#" class="header-nav__link anim-white">SEARCH</a>
+      </nav>
+  
+      <div class="header-authn">
+          <a href="#" class="header-authn__btn outlined-btn anim-border anim-white">Log in</a>
+          <a href="#" class="header-authn__btn anim-border anim-orange">Sign up</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-hero">  
+      <div class="hero container">
+        <div class="hero-left">
+          <div class="hero-left__text">
+            <h1>Explore <b>tones</b> of music with Music <b>Tones</b></h1>
+            <h2>Dive into music whether you’re a learner or a proficient player.</h2>
+            <h2>Study, practice, and have fun absolutely for <b>FREE</b>.</h2>
+            <h2>No paid subscription.</h2>
+            <h2><b>Sign up</b> only to save learning progress and preferences.</h2>
+            <a class="hero-left__cta anim-border anim-orange" href="#">LET'S GO</a>
+          </div>
+          <div class="hero-left__clef"></div>
+        </div>
+        <div class="hero-right">
+          <div class="slider">
+            <div class="slider-header">
+              <img class="slider-img" src="static/images/sld-elton.jpg" data-active>
+              <!--               
+              <img class="slider-img" src="static/images/sld-adams.jpg">
+              <img class="slider-img" src="static/images/sld-buddy-guy.jpg">
+              <img class="slider-img" src="static/images/sld-hendrix.jpg">
+              <img class="slider-img" src="static/images/sld-tommy1.jpg"> 
+              -->
+              <button class="slider-btn slider-btn_randomize" onclick="setRandomSliderImages()"></button>
+              <div class="slider-bullets">
+                <input type="radio" name="bullet" class="slider-bullet" checked>
+                <input type="radio" name="bullet" class="slider-bullet">
+                <input type="radio" name="bullet" class="slider-bullet">
+                <input type="radio" name="bullet" class="slider-bullet">
+                <input type="radio" name="bullet" class="slider-bullet">
+              </div>
+            </div>
+            <div class="slider-footer">
+              <button class="slider-btn slider-btn_prev" data-slider-btn-nav="prev"></button>
+              <div class="slider-footer__caption">
+                <p class="slider-footer__quote">
+                  Music has healing power. It has the ability to take people out of themselves for a few hours.
+                </p>
+                <h3>
+                  - Elton John
+                </h3>
+              </div>
+              <button class="slider-btn slider-btn_next" data-slider-btn-nav="next"></button>
+            </div>
+          </div>
+          <div class="hero-right__clef"></div>
+        </div>
+        
+      </div>
+    </section>
+    <section class="section-cont">
+      <div class="cont-bgd">
+        <div class="cont-bgd-hlines">
+          <div class="cont-bgd-hline"></div>
+          <div class="cont-bgd-hline"></div>
+          <div class="cont-bgd-hline"></div>
+          <div class="cont-bgd-hline"></div>
+        </div>
+
+      </div>
+      <div class="cont container ">
+        <img class="bass-clef" src="static/images/bass-clef.svg"></img>
+        <div class="cont-vlines">
+          <div class="cont-vline"></div>
+          <div class="cont-vline cont-vline_thick"></div>
+        </div>
+        <div class="cont-title cont-title_theory">
+          <h1>THEORY</h1>
+          <h5>Learn grammar and history of the most universal language of the world.</h5>
+        </div>
+        <div class="cards cards_theory">          
+          <div class="card">
+            <a class="card-head" href="#">
+                <div class="card-head__img card-head__img_theory-history"></div>
+                <div class="card-head__title">
+                  <h4>History</h4>
+                  <img class="card-head__title-arrow" src="/static/images/card-arrow.png">
+                </div>
+            </a>
+            <div class="card-stem card-stem_up"></div>
+          </div>
+          <div class="card">
+            <a class="card-head" href="#">
+              <img class="card-head__img card-head__img_theory-basics"></img>
+              <div class="card-head__title">
+                <h4>Basics</h4>
+                <img class="card-head__title-arrow" src="/static/images/card-arrow.png">
+              </div>
+            </a>
+            <div class="card-stem card-stem_up"></div>
+          </div>
+          <div class="card">
+            <a class="card-head" href="#">
+              <img class="card-head__img card-head__img_theory-harmony"></img>
+              <div class="card-head__title">
+                <h4>Harmony</h4>
+                <img class="card-head__title-arrow" src="/static/images/card-arrow.png">
+              </div>
+            </a>
+            <div class="card-stem card-stem_up"></div>
+          </div>
+        </div>
+
+        <div class="cont-title cont-title_practice">
+          <h1>PRACTICE</h1>
+          <h5>The practice challenges your concentration, consistency, and composure, but in case of success - your skills finally become music.</h5>
+        </div>
+        <div class="cards cards_practice">          
+          <div class="card">
+            <a class="card-head" href="#">
+              <div class="card-head__img card-head__img_practice-notation"></div>
+                <div class="card-head__title">
+                  <h4>Notation</h4>
+                  <img class="card-head__title-arrow" src="/static/images/card-arrow.png">
+                </div>
+            </a>
+            <div class="card-stem card-stem_down"></div>
+          </div>
+          <div class="card">
+            <a class="card-head" href="#">
+              <div class="card-head__img card-head__img_practice-ear"></div>
+                <div class="card-head__title">
+                  <h4>Ear</h4>
+                  <img class="card-head__title-arrow" src="/static/images/card-arrow.png">
+                </div>
+            </a>
+            <div class="card-stem card-stem_down"></div>
+          </div>
+          <div class="card">
+            <a class="card-head" href="#">
+              <div class="card-head__img card-head__img_practice-instrument"></div>
+              <div class="card-head__title">
+                  <h4>Instrument</h4>
+                  <img class="card-head__title-arrow" src="/static/images/card-arrow.png">
+              </div>
+            </a>
+            <div class="card-stem card-stem_down"></div>
+          </div>
+          <div class="card-beam">
+            <p class="small-quote">You start out learning the skills, you practice it until the skills become music</p>
+            <p>- Tommy Emmanuel</p>
+          </div>
+        </div>
+
+        <div class="cont-title cont-title_quiz">
+          <h1>QUIZ</h1>
+          <h5>Choose your favorite music categories and check your knowledge.</h5>
+        </div>
+        <div class="cards cards_quiz">   
+          <div class="card">
+            <a class="card-head" href="#">
+              <div class="card-head__img card-head__img_fun-quiz"></div>
+              <div class="card-head__title">
+                <h4>Quiz</h4>
+                <img class="card-head__title-arrow" src="/static/images/card-arrow.png">
+              </div>
+            </a>
+            <div class="card-stem card-stem_down"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <footer>
+      <div class="ftr-cont container">
+        <div class="ftr-cont__link-lists-container">
+          <div class="ftr-cont__link-list">
+            <p class="ftr-cont__link-list-title" href="#">Theory</p>
+            <a href="#">Notation</a>
+            <a href="#">Intervals</a>
+            <a href="#">Chords</a>
+            <a href="#">Rhythm</a>
+            <a href="#">Scales & Keys</a>
+            <a href="#">Harmony</a>
+            <a href="#">Glossary</a>
+          </div>
+          <div class="ftr-cont__link-list">
+            <p class="ftr-cont__link-list-title" href="#">Practice</p>
+            <a href="#">Notation</a>
+            <a href="#">Ear</a>
+            <a href="#">Guitar</a>
+            <a href="#">Piano</a>
+            <a href="#">Metronome</a>
+          </div>
+          <div class="ftr-cont__link-list">
+            <p class="ftr-cont__link-list-title" href="#">Fun</p>
+            <a href="#">Quiz</a>
+          </div>
+          <div class="ftr-cont__link-list">
+            <p class="ftr-cont__link-list-title" href="#">My Account</p>
+            <a href="#">My Profile</a>
+          </div>
+          <div class="ftr-cont__link-list">
+            <p class="ftr-cont__link-list-title" href="#">Contacts</p>
+            <a class="ftr-cont__link_contacts" href="https://github.com/Nazar0vIvan">
+              <img src="static/images/github.svg">
+              https://github.com/Nazar0vIvan
+            </a>
+            <a class="ftr-cont__link_contacts">
+              <img src="static/images/mail.svg">
+              musictones@gmail.com
+            </a>
+          </div>
+        </div>
+        <div class="ftr-cont__sign-up-container">
+          <p class="ftr-cont__sign-up-title">BE IN THE KNOW !</p>
+          <p>Sign up to be aware of new upcoming features.</p>
+          <div class="ftr-cont__sign-up-field">
+            <input class="ftr-cont__sign-up-input" type="text" placeholder="Email">
+            <a href="#" class="ftr-cont__sign-up-btn anim-border anim-orange">Sign up</a>
+          </div>
+
+        </div>
+      </div>
+      <div class="ftr-separator"></div>
+      <div class="ftr-bottom container">
+        <div>
+          Copyright &copy 2023. <span class="txt-light-orange">Music</span> Tones. All Rights Reserved 
+        </div>
+        <div>
+          <div class="small-quote small-quote_inline">
+            The more you love music, the more music you love
+          </div>
+          - Tom Moon
+        </div>
+      </div>
+    </footer>
+  </main>
+
+</body>
+
+</html>
