@@ -1,0 +1,9 @@
+.cards-layout {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  align-items: center;
+  row-gap: 14px;
+  grid-auto-flow: column;
+  padding-top: 24px;
+}
