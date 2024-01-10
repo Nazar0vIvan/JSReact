@@ -4,8 +4,15 @@ import "./CardsLayout.css";
 
 const CardsLayout = ({ data }) => {
   const cards = data.map((card) => {
-    const { title, desc, icon } = card;
-    return <Card title={title} desc={desc} icon={icon} />;
+    const { id, title, desc, icon } = card;
+    return (
+      <Card
+        id={id}
+        title={title}
+        desc={desc}
+        icon={icon}
+      />
+    );
   });
 
   return <div className="cards-layout">{cards}</div>;

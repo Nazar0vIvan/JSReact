@@ -1,22 +1,25 @@
 .card {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
   width: 344px;
   height: 166px;
   padding: 16px;
   background-color: white;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .card__wrapper {
   display: flex;
   flex-direction: row;
-  align-content: start;
   gap: 16px;
 }
 
 .card__text {
   display: flex;
   flex-direction: column;
-  align-content: start;
   gap: 10px;
 }
 
@@ -31,4 +34,59 @@
 }
 
 .card__icon {
+  width: 80px;
+  height: 80px;
+}
+
+.learn-more {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 28px;
+}
+
+.txt-white {
+  color: white;
+}
+
+.txt-black {
+  color: #121212;
+}
+
+.learn-more__arrow {
+  height: 11px;
+}
+
+.arrow-black {
+  filter: invert(100%);
+}
+
+.brd-black {
+  border: 1px solid #121212;
+}
+
+.ribbon-color0 {
+  background-color: #0D6C8C;
+}
+
+.ribbon-color1 {
+  background-color: #F5DE19;
+}
+
+.ribbon-color2 {
+  background-color: #333333;
+}
+
+.learn-more__ribbon {
+  position: absolute;
+  height: 36px;
+  width: 128px;
+  border-radius: 50vw;
+  z-index: -1;
+  transform: translateX(-33px);
+}
+
+.learn-more__ribbon:hover {
+  transform: translateX(-25px);
 }
