@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import TreeView from "../treeview/TreeView";
 
 function TreeNode({ node }) {
   const { children, label } = node;
@@ -10,10 +12,13 @@ function TreeNode({ node }) {
   };
   return (
     <>
-      <div onClick={handleClick} style={{ marginBottom: "10px" }}>
+      <div
+        onClick={handleClick}
+        style={{ marginBottom: "10px" }}
+      >
         <span>{label}</span>
       </div>
-      <ul>{showChildren && <Tree treeData={children} />}</ul>
+      <ul>{showChildren && <TreeView treeData={children} />}</ul>
     </>
   );
 }
