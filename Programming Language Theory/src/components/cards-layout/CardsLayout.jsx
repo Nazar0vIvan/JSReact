@@ -1,17 +1,15 @@
 import React from "react";
 import Card from "../card/Card";
+import { Link } from "react-router-dom";
 import "./CardsLayout.css";
 
 const CardsLayout = ({ data }) => {
   const cards = data.map((card) => {
-    const { id, title, desc, icon } = card;
+    const { id, title, desc, icon, path } = card;
     return (
-      <Card
-        id={id}
-        title={title}
-        desc={desc}
-        icon={icon}
-      />
+      <Link to={path}>
+        <Card id={id} title={title} desc={desc} icon={icon} />
+      </Link>
     );
   });
 

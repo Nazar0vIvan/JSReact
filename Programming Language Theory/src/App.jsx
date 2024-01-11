@@ -1,8 +1,15 @@
 import { useState } from "react";
-import CardsLayout from "./components/cards-layout/CardsLayout";
+
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import ReactPage from "./pages/ReactPage/ReactPage";
+import CppPage from "./pages/CppPage/CppPage";
+import JavaScriptPage from "./pages/JavaScriptPage/JavaScriptPage";
+
 import LogoReact from "./assets/logo-react.png";
 import LogoJS from "./assets/logo-js.png";
 import LogoCpp from "./assets/logo-cpp.png";
+
 import "./App.css";
 
 function App() {
@@ -28,9 +35,17 @@ function App() {
   ];
 
   return (
-    <div className="app">
-      <CardsLayout data={cardsData} />
-    </div>
+    <>
+      <div className="app">
+        <CardsLayout data={cardsData} />
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/react" element={<ReactPage />} />
+        <Route path="/javascript" element={<JavaScriptPage />} />
+        <Route path="/cpp" element={<CppPage />} />
+      </Routes>
+    </>
   );
 }
 

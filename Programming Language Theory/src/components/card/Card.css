@@ -9,6 +9,12 @@
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: none;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .card__wrapper {
@@ -21,6 +27,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: #121212;
 }
 
 .card__title {
@@ -46,16 +53,38 @@
   padding-top: 28px;
 }
 
+.learn-more__arrow {
+  height: 11px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.learn-more__ribbon {
+  position: absolute;
+  height: 36px;
+  width: 136px;
+  border-top-right-radius: 50vw;
+  border-bottom-right-radius: 50vw;
+  z-index: -1;
+  transform: translateX(-33px);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover .learn-more__ribbon {
+  transform: translateX(-25px);
+}
+
+.card:hover .learn-more__arrow {
+  transform: translateX(8px) rotate(90deg);
+}
+
+/* mix */
+
 .txt-white {
   color: white;
 }
 
 .txt-black {
   color: #121212;
-}
-
-.learn-more__arrow {
-  height: 11px;
 }
 
 .arrow-black {
@@ -67,26 +96,13 @@
 }
 
 .ribbon-color0 {
-  background-color: #0D6C8C;
+  background-color: #0d6c8c;
 }
 
 .ribbon-color1 {
-  background-color: #F5DE19;
+  background-color: #f5de19;
 }
 
 .ribbon-color2 {
   background-color: #333333;
-}
-
-.learn-more__ribbon {
-  position: absolute;
-  height: 36px;
-  width: 128px;
-  border-radius: 50vw;
-  z-index: -1;
-  transform: translateX(-33px);
-}
-
-.learn-more__ribbon:hover {
-  transform: translateX(-25px);
 }

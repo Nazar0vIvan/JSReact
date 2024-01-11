@@ -2,7 +2,7 @@ import React from "react";
 import Arrow from "../../assets/arrow.png";
 import "./Card.css";
 
-const Card = ({ id, title, desc, icon }) => {
+const Card = ({ id, title, desc, icon, path }) => {
   let txtColor = "txt-white";
   let ribbonBorder = "";
   let arrowColor = "arrow-black";
@@ -20,20 +20,13 @@ const Card = ({ id, title, desc, icon }) => {
           <p className="card__title">{title}</p>
           <p className="card__desc">{desc}</p>
         </div>
-        <img
-          className="card__icon"
-          src={icon}
-        ></img>
+        <img className="card__icon" src={icon}></img>
       </div>
       <div className="learn-more">
         <p className={`${txtColor}`}>Learn more</p>
-        <img
-          className={`learn-more__arrow ${arrowColor}`}
-          src={Arrow}
-        ></img>
+        <img className={`learn-more__arrow ${arrowColor}`} src={Arrow}></img>
         <div
-          className={`learn-more__ribbon ${ribbonBorder} ${ribbonColor}`}
-        ></div>
+          className={`learn-more__ribbon ${ribbonBorder} ${ribbonColor}`}></div>
       </div>
     </div>
   );
