@@ -8,9 +8,11 @@ export function RefForm() {
 
   const [emailErrors, setEmailErrors] = useState([]);
   const [passwordErrors, setPasswordErrors] = useState([]);
+  const [isAfterFirstSubmit, setIsAfterFirstSubmit] = useState(false);
 
   function onSubmit(e) {
     e.preventDefault();
+    setIsAfterFirstSubmit(true);
 
     const emailResults = checkEmail(emailRef.current.value);
     const passwordResults = checkPassword(passwordRef.current.value);
@@ -29,7 +31,17 @@ export function RefForm() {
         <label className="label" htmlFor="email">
           Email
         </label>
-        <input id="email" className="input" type="email" ref={emailRef} />
+        <input
+          id="email"
+          className="input"
+          type="email"
+          ref={emailRef}
+          onChange={
+            isAfterFirstSubmit
+              ? (e) => setEmailErrors(checkEmail(e.target.value))
+              : undefined
+          }
+        />
         {emailErrors.length > 0 && (
           <div className="msg">{emailErrors.join(", ")}</div>
         )}
@@ -43,6 +55,11 @@ export function RefForm() {
           className="input"
           type="password"
           ref={passwordRef}
+          onChange={
+            isAfterFirstSubmit
+              ? (e) => setPasswordErrors(checkPassword(e.target.value))
+              : undefined
+          }
         />
         {passwordErrors.length > 0 && (
           <div className="msg">{passwordErrors.join(", ")}</div>
