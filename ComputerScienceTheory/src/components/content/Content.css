@@ -1,0 +1,5 @@
+.content {
+  background-color: var(--background);
+  height: 100vh;
+  flex-grow: 1;
+}
