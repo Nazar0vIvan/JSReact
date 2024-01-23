@@ -1,46 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
+import Child from "./Child";
+
+const ThemeContext = createContext();
 
 function App() {
-  // const [name, setName] = useState("");
-  //const [isDarkMode, setIsDarkMode] = useState(false);
-  const nameInput = useInputValue("");
-  const [isDarkMode, toggleDarkMode] = useToggle(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  return (
-    <div
-      style={{
-        background: isDarkMode ? "#333" : "white",
-        color: isDarkMode ? "white" : "#333",
-      }}
-    >
-      <label>
-        Name:
-        <input {...nameInput} />
-      </label>
-      <br />
-      <br />
-      <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
-    </div>
-  );
-}
-
-function useToggle(initialValue) {
-  const [value, setValue] = useState(initialValue);
-
-  function toggle() {
-    setValue((currentValue) => !currentValue);
+  function toggleTheme() {
+    setIsDarkMode((d) => !d);
   }
 
-  return [value, toggle];
-}
+  useEffect(() => {
+    document.body.style.background = isDarkMode ? "#333" : "white";
+    document.body.style.color = isDarkMode ? "white" : "#333";
+  }, [isDarkMode]);
 
-function useInputValue(initialValue) {
-  const [value, setValue] = useState(initialValue);
-
-  return {
-    value,
-    onChange: (e) => setValue(e.target.value),
-  };
+  return (
+    <ThemeContext.Provider value ={{isDarkMode, toggleTheme}}>
+      <Child isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </ThemeContext.Provider>
+  );
 }
 
 export default App;
