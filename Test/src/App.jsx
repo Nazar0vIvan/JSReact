@@ -1,25 +1,27 @@
 import React, { useEffect, useState, createContext } from "react";
-import Child from "./Child";
-
-const ThemeContext = createContext();
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Store from "./pages/Store";
+import Navbar from "./Navbar";
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  function toggleTheme() {
-    setIsDarkMode((d) => !d);
+  let component;
+  switch (window.location.pathname) {
+    case "/":
+      component = <Home />;
+      break;
+    case "/about":
+      component = <About />;
+      break;
+    case "/store":
+      component = <Store />;
+      break;
   }
-
-  useEffect(() => {
-    document.body.style.background = isDarkMode ? "#333" : "white";
-    document.body.style.color = isDarkMode ? "white" : "#333";
-  }, [isDarkMode]);
-
   return (
-    <ThemeContext.Provider value ={{isDarkMode, toggleTheme}}>
-      <Child isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </ThemeContext.Provider>
+    <>
+      <Navbar />
+      {component}
+    </>
   );
 }
 
