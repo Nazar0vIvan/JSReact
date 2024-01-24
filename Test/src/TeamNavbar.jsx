@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
+import teamMembers from "./teamMembers.json";
+import { useEffect } from "react";
 
 function TeamNavbar() {
   return (
     <nav>
       <ul>
-        <li>
-          <Link to="/team/joe">Team - Joe</Link>
-        </li>
-        <li>
-          <Link to="/team/sally">Team - Sally</Link>
-        </li>
+        {teamMembers.map((member) => (
+          <li key={member.id}>
+            <Link to={member.id}>Team - {member.name}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
