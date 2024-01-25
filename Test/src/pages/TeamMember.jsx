@@ -1,9 +1,7 @@
-import { useParams } from "react-router-dom";
-import teamMembers from "../teamMembers.json";
+import { useLoaderData, useParams } from "react-router-dom";
 
-function TeamMember({ name }) {
-  const { memberId } = useParams();
-  const member = teamMembers.find((m) => m.id === memberId);
+function TeamMember() {
+  const member = useLoaderData();
   return <h1>Team Member - {member.name}</h1>;
 }
 

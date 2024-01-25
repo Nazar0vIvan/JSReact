@@ -1,4 +1,4 @@
-import { Outlet, createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter, redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Store from "./pages/Store";
@@ -17,9 +17,28 @@ export const router = createBrowserRouter([
       {
         path: "/team",
         element: <TeamNavLayout />,
+        loader:
+          async () =>
+          ({ request: { signal } }) => {
+            return fetch("https://jsonplaceholder.typicode.com/users", {
+              signal,
+            });
+          },
         children: [
           { index: true, element: <Team /> },
-          { path: ":memberId", element: <TeamMember /> },
+          {
+            path: ":memberId",
+            loader: async ({ params, request: { signal } }) => {
+              return fetch(
+                `https://jsonplaceholder.typicode.com/users/${params.memberId}`,
+                { signal }
+              ).then((res) => {
+                if (res.status === 200) return res.json();
+                throw redirect("/team");
+              });
+            },
+            element: <TeamMember />,
+          },
         ],
       },
     ],
