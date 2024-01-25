@@ -1,6 +1,6 @@
 import { Link, Outlet, ScrollRestoration } from "react-router-dom";
 
-function RootLayout() {
+export function RootLayout() {
   return (
     <>
       <nav className="top-nav">
@@ -24,5 +24,3 @@ function RootLayout() {
     </>
   );
 }
-
-export default RootLayout;

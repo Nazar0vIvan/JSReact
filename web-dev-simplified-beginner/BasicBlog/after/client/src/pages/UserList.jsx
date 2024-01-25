@@ -1,5 +1,37 @@
+import { getUsers } from "../api/users";
+import { Link, useLoaderData } from "react-router-dom";
+
 function UserList() {
-  return <h1>UserList</h1>;
+  const users = useLoaderData();
+  return (
+    <>
+      <h1 className="page-title">Users</h1>
+      <div className="card-grid">
+        {users.map((user) => (
+          <div className="card" key={user.id}>
+            <div className="card-header">{user.name}</div>
+            <div className="card-body">
+              <div>{user.company.name}</div>
+              <div>{user.website}</div>
+              <div>{user.email}</div>
+            </div>
+            <div className="card-footer">
+              <Link className="btn" to={user.id.toString()}>
+                View
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 }
 
-export default UserList;
+async function loader({ request: { signal } }) {
+  return getUsers({ signal });
+}
+
+export const userListRoute = {
+  loader,
+  element: <UserList />,
+};
