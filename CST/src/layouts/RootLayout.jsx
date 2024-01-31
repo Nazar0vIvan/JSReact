@@ -40,10 +40,14 @@ export default function RootLayout() {
         ref={sidebarRef}
         className="sidebar"
         style={{ width: sidebarWidth }}
-        onMouseDown={(e) => e.preventDefault()}>
+        onMouseDown={(e) => e.preventDefault()}
+      >
         <div className="sidebar__contents" />
       </div>
-      <div className="handler" onMouseDown={startResizing} />
+      <div
+        className={`handler ${isResizing && "is-resizing"}`}
+        onMouseDown={startResizing}
+      ></div>
       <div className="frame" />
     </div>
   );

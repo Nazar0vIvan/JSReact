@@ -44,26 +44,19 @@
 }
 
 .handler {
-  position: relative;
-  width: 16px;
+  width: 2px;
   cursor: col-resize;
   resize: horizontal;
-  background-color: var(--background);
-  opacity: var(--high);
-}
-
-.handler::before {
-  content: "";
-  position: absolute;
-  width: 32px;
-  height: 100%;
-  right: 50%;
-  z-index: 0;
+  background-color: green;
+  transition: 0.2s;
 }
 
 .handler:hover {
-  opacity: var(--medium);
-  width: 32px;
+  transform: scaleX(3.0);
+}
+
+.is-resizing {
+  transform: scaleX(3.0);
 }
 
 .frame {
