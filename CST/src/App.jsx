@@ -1,5 +1,5 @@
+/*
 import React from "react";
-import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,10 +11,17 @@ import CardsLayout from "./components/cardslayout/CardsLayout";
 import Content from "./components/content/Content";
 import TestComponent from "./components/testcomponent/TestComponent";
 import CardsData from "../public/cards-data.js";
-import Handler from "./components/Handler/Handler.jsx";
+import Handler from "./components/handler/Handler.jsx";
 import "./App.css";
 
 const router = createBrowserRouter(
+  {
+    path: "/",
+    element: <Sidebar />,
+    children: [
+
+    ]
+  }
   createRoutesFromElements(
     <Route
       path="/"
@@ -43,3 +50,4 @@ function App() {
 }
 
 export default App;
+*/

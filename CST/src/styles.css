@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Serif:opsz@8..144&display=swap");
+
+:root {
+  --background: #121212;
+  --onbackground: #fff;
+  --high: 0.87;
+  --medium: 0.6;
+  --disabled: 0.38;
+  --elevation: 0.05;
+  --hover: 0.1;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: row;
+  min-width: 150px;
+  max-width: 300px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: var(--background);
+}
+
+.sidebar__contents {
+  flex: 1;
+  opacity: 0.3;
+}
+
+.handler {
+  position: relative;
+  width: 16px;
+  cursor: col-resize;
+  resize: horizontal;
+  background-color: var(--background);
+  opacity: var(--high);
+}
+
+.handler::before {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 100%;
+  right: 50%;
+  z-index: 0;
+}
+
+.handler:hover {
+  opacity: var(--medium);
+  width: 32px;
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--background);
+  flex: 1;
+}
