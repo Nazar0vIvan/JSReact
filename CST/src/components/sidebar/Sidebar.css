@@ -1,9 +1,0 @@
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
-  padding: 16px;
-  min-width: 392px;
-  width: 392px;
-  height: 100vh;
-}

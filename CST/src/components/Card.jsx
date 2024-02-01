@@ -1,18 +1,9 @@
-import React from "react";
-import "./Card.css";
-
-function Card({ title, desc, icon, path }) {
+export function Card({ title, desc, icon }) {
   return (
     <div style={{ position: "relative" }}>
-      <div
-        className="overlay"
-        role="button"
-      ></div>
+      <div className={"overlay"} role="button"></div>
       <div className="card">
-        <img
-          className="card__icon"
-          src={icon}
-        ></img>
+        <img className="card__icon" src={icon}></img>
         <div className="card__text-wrapper">
           <div className="card__text">
             <p className="card__title">{title}</p>
@@ -23,5 +14,3 @@ function Card({ title, desc, icon, path }) {
     </div>
   );
 }
-
-export default Card;

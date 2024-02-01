@@ -22,6 +22,8 @@
   box-sizing: border-box;
 }
 
+/* ROOT */
+
 .app {
   display: flex;
   flex-direction: row;
@@ -30,39 +32,118 @@
 
 .sidebar {
   display: flex;
-  flex-direction: row;
-  min-width: 150px;
-  max-width: 300px;
+  flex-direction: column;
+  border: 1px solid transparent;
+  padding: 24px;
+  overflow: hidden;
   flex-grow: 0;
   flex-shrink: 0;
+  align-items: start;
   background-color: var(--background);
 }
 
-.sidebar__contents {
-  flex: 1;
-  opacity: 0.3;
-}
-
 .handler {
+  position: relative;
   width: 2px;
   cursor: col-resize;
   resize: horizontal;
-  background-color: green;
-  transition: 0.2s;
+  background-color: #313131;
+  transition: transform 0.2s;
 }
 
-.handler:hover {
-  transform: scaleX(3.0);
+.handler::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -2px;
+  width: 6px;
+  visibility: none;
 }
 
-.is-resizing {
-  transform: scaleX(3.0);
+.handler:hover,
+.handler_resize {
+  transform: scaleX(2);
 }
 
-.frame {
+.notes {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: var(--background);
   flex: 1;
+}
+
+/* CARDS */
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 14px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 344px;
+  padding: 16px;
+  background-color: var(--background);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 10px;
+  background-color: var(--onbackground);
+  opacity: var(--elevation);
+}
+
+.overlay:hover {
+  opacity: var(--hover);
+}
+
+.overlay:active {
+  opacity: var(--elevation);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.card__text-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: var(--onbackground);
+  opacity: var(--high);
+}
+
+.card__title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.card__desc {
+  opacity: var(--medium);
+  line-height: 1.4rem;
+}
+
+.card__icon {
+  width: 80px;
+  height: 80px;
 }
