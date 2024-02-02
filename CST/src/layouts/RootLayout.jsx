@@ -11,8 +11,6 @@ import db from "../../api/db.json";
 const SIDEBAR_MIN_WIDTH = 150;
 const SIDEBAR_MAX_WIDTH = 1000;
 
-export const SidebarResizeContext = createContext();
-
 export default function RootLayout() {
   const sidebarRef = useRef(null);
   const [isResizing, setIsResizing] = useState(false);
@@ -32,8 +30,8 @@ export default function RootLayout() {
         let width =
           mouseMoveEvent.clientX -
           sidebarRef.current.getBoundingClientRect().left;
-        if (width > SIDEBAR_MAX_WIDTH) width = SIDEBAR_MAX_WIDTH;
-        if (width < SIDEBAR_MIN_WIDTH) width = SIDEBAR_MIN_WIDTH;
+        // if (width > SIDEBAR_MAX_WIDTH) width = SIDEBAR_MAX_WIDTH;
+        // if (width < SIDEBAR_MIN_WIDTH) width = SIDEBAR_MIN_WIDTH;
         setSidebarWidth(width);
       }
     },
@@ -49,28 +47,19 @@ export default function RootLayout() {
     };
   }, [resize, stopResizing]);
 
-  function handleResize(isSizebarResizing) {
-    
-  }
-
   return (
-    <SidebarResizeContext.Provider value={isResizing}>
-      <div className="app">
-        <div
-          ref={sidebarRef}
-          className="sidebar"
-          style={{ width: sidebarWidth }}
-          onMouseDown={(e) => e.preventDefault()}
-        >
-          <CardsList cards={db.cards} />
-        </div>
-        <div
-          className={`handler ${isResizing ? "handler_resize" : ""}`}
-          onMouseDown={startResizing}
-        ></div>
-        <div className="notes" />
+    <div className={`app ${isResizing ? "handler_resize" : ""}`}>
+      <div
+        ref={sidebarRef}
+        className="sidebar"
+        style={{ flexBasis: sidebarWidth }}
+        onMouseDown={(e) => e.preventDefault()}
+      >
+        <CardsList cards={db.cards} isResizing={isResizing} />
       </div>
-    </SidebarResizeContext.Provider>
+      <div className="handler" onMouseDown={startResizing}></div>
+      <div className="notes" />
+    </div>
   );
 }
 
