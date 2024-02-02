@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useOutletContext } from "react-router-dom";
 import { Card } from "./Card";
+import { getCards } from "../../api/cards";
 
-export function CardsList({ cards, isResizing }) {
+export function CardsList() {
+  const isResizing = useOutletContext();
+  const cards = useLoaderData();
   return (
     <div className="cards-list">
       {cards.map((card) => {
@@ -15,3 +18,12 @@ export function CardsList({ cards, isResizing }) {
     </div>
   );
 }
+
+async function loader({ request: { signal } }) {
+  return await getCards({ signal });
+}
+
+export const cardsListRoute = {
+  element: <CardsList />,
+  loader,
+};

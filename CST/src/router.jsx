@@ -1,10 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
-import { rootLayoutRoute } from "./layouts/RootLayout";
+import { RootLayout } from "./layouts/RootLayout";
+import { cardsListRoute } from "./components/CardsList";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    ...rootLayoutRoute,
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        ...cardsListRoute,
+      },
+    ],
   },
 ]);
 
