@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 
-const SIDEBAR_MIN_WIDTH = 150;
-
 export function Sidebar({ isResizing, stopResizing }) {
   const sidebarRef = useRef(null);
   const [sidebarWidth, setSidebarWidth] = useState();
@@ -13,7 +11,6 @@ export function Sidebar({ isResizing, stopResizing }) {
         let width =
           mouseMoveEvent.clientX -
           sidebarRef.current.getBoundingClientRect().left;
-        if (width < SIDEBAR_MIN_WIDTH) width = SIDEBAR_MIN_WIDTH;
         setSidebarWidth(width);
       }
     },

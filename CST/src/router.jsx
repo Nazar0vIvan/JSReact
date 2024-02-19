@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "./layouts/RootLayout";
 import { cardsListRoute } from "./components/CardsList";
 
@@ -6,10 +6,14 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    children: [
+    children: [f
       {
         index: true,
         ...cardsListRoute,
+      },
+      {
+        path: "react",
+        element: <div>Hi</div>,
       },
     ],
   },
