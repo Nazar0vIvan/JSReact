@@ -18,7 +18,7 @@ export function RootLayout() {
           setIsResizing(true);
         }}
       ></div>
-      <div className="notes" />
+      <div className="notes container">HERE WILL BE NOTES</div>
     </div>
   );
 }

@@ -29,7 +29,7 @@ export function Sidebar({ isResizing, stopResizing }) {
   return (
     <div
       ref={sidebarRef}
-      className="sidebar"
+      className="sidebar container"
       style={{ width: sidebarWidth }}
       onMouseDown={(e) => e.preventDefault()}
     >

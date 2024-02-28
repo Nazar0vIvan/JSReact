@@ -20,6 +20,11 @@
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
+  color: var(--onbackground);
+}
+
+.container {
+  padding: 24px;
 }
 
 /* ROOT */
@@ -34,7 +39,6 @@
   display: flex;
   flex-direction: column;
   border: 1px solid transparent;
-  padding: 24px;
   max-width: fit-content;
   min-width: 150px;
   overflow: hidden;
@@ -149,3 +153,24 @@
   width: 80px;
   height: 80px;
 }
+
+/* CONTENTS */
+
+.tree-view {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tree-node {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.toggle-icon {
+  cursor: pointer;
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+/* NOTES */

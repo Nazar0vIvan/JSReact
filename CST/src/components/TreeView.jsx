@@ -1,17 +1,30 @@
-import React from "react";
-import TreeNode from "../treenode/TreeNode";
+import React, { useState } from "react";
 
-function TreeView({ treeData }) {
+export function TreeView({ data }) {
   return (
-    <ul>
-      {treeData.map((node) => (
-        <TreeNode
-          node={node}
-          key={node.key}
-        />
+    <div className="tree-view">
+      {data.map((node) => (
+        <TreeNode key={node.key} node={node} />
       ))}
-    </ul>
+    </div>
   );
 }
 
-export default TreeView;
+function TreeNode({ node }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleNode = () => setIsOpen(!isOpen);
+
+  const { children, label } = node;
+
+  return (
+    <div className="tree-node">
+      {children && (
+        <button onClick={toggleNode} className="toggle-icon">
+          {isOpen ? "⮝" : "⮟"}
+        </button>
+      )}
+      <span>{label}</span>
+      {isOpen && <TreeView data={children} />}
+    </div>
+  );
+}
