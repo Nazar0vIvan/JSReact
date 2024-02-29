@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export function TreeView({ data }) {
   return (
@@ -12,17 +12,16 @@ export function TreeView({ data }) {
 
 function TreeNode({ node }) {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleNode = () => setIsOpen(!isOpen);
-
   const { children, label } = node;
 
   return (
     <div className="tree-node">
-      {children && (
-        <button onClick={toggleNode} className="toggle-icon">
-          {isOpen ? "⮝" : "⮟"}
-        </button>
-      )}
+      <button
+        onClick={children != null ? () => setIsOpen(!isOpen) : null}
+        className="toggle-icon"
+      >
+        {children == null ? "*" : isOpen ? "⮝" : "⮟"}
+      </button>
       <span>{label}</span>
       {isOpen && <TreeView data={children} />}
     </div>

@@ -159,7 +159,6 @@
 .tree-view {
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 
 .tree-node {
@@ -170,6 +169,7 @@
 .toggle-icon {
   cursor: pointer;
   background-color: transparent;
+  border: 0px solid transparent;
   margin-right: 10px;
 }
 

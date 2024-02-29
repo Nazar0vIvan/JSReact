@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "./layouts/RootLayout";
 import { cardsListRoute } from "./components/CardsList";
-import { contentsRoute } from "./components/Contents";
+import { Contents } from "./components/Contents";
+import { getContents } from "../api/contents";
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +15,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "react",
-        ...contentsRoute,
+        element: <Contents />,
+        loader: async ({ request: { signal } }) => {
+          return await getContents("react", { signal });
+        },
       },
     ],
   },
