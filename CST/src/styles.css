@@ -3,6 +3,7 @@
 :root {
   --background: #121212;
   --onbackground: #fff;
+  --secondary: #F5DE19;
   --high: 0.87;
   --medium: 0.6;
   --disabled: 0.38;
@@ -156,21 +157,59 @@
 
 /* CONTENTS */
 
+.tree-node-wrapper {
+  display: flex;
+  flex-direction: column;
+
+}
+
 .tree-view {
-  margin: 0;
-  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .tree-node {
-  margin: 10px 0;
-  padding-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }
 
-.toggle-icon {
-  cursor: pointer;
+.tree-node__mark {
+  height: 28px;
+  width: 4px;
+  border-radius: 2px;
+  border: 1px solid transparent;
   background-color: transparent;
-  border: 0px solid transparent;
-  margin-right: 10px;
 }
+
+.tree-node__mark_active {
+  background-color: var(--secondary);
+}
+
+.tree-node__link {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  padding: 6px;
+  border-radius: 6px;
+  flex: 2;
+}
+
+.tree-node__link:hover {
+  background-color: rgba(213, 213, 213, 0.3)
+}
+
+.tree-node__icon {
+  height: 1rem;
+  width: 1rem;
+  justify-self: center;
+  margin-left: 1rem;
+}
+
+
+
+
 
 /* NOTES */
