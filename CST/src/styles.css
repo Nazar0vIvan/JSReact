@@ -156,33 +156,26 @@
 
 /* CONTENTS */
 
-.tree-node-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
 .tree-view {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .tree-node {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
+  display: block;
+  position: relative;
 }
 
-.tree-node__mark {
-  height: 1.5rem;
+.tree-node__active-mark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 4px;
   border-radius: 2px;
-  border: 1px solid transparent;
-  background-color: transparent;
-}
-
-.tree-node__mark_active {
   background-color: #1adcff;
+  visibility: hidden;
 }
 
 .tree-node__link {
@@ -192,17 +185,23 @@
   align-items: center;
   padding: 6px;
   border-radius: 6px;
-  flex: 2;
 }
 
 .tree-node__link:hover {
-  background-color: rgba(213, 213, 213, 0.3);
+  background-color: rgba(220, 220, 220, 0.1);
+}
+
+.tree-node__link_active {
+  background-color: rgba(220, 220, 220, 0.1);
 }
 
 .tree-node__icon {
   height: 1rem;
   width: 1rem;
-  justify-self: center;
+}
+
+.show {
+  visibility: visible;
 }
 
 /* NOTES */
