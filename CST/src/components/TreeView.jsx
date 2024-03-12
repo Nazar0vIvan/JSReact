@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ArrowIcon from "./arrow.svg";
 import FileIcon from "./file.svg";
+import FolderIcon from "./folder.svg";
 
 export function TreeView({ data }) {
   return (
@@ -15,6 +16,7 @@ export function TreeView({ data }) {
 
 function TreeNode({ node }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const { children, label } = node;
 
   function toggleOpen() {
@@ -30,7 +32,7 @@ function TreeNode({ node }) {
       <div className="tree-node">
         <div
           className={`tree-node__mark ${
-            isOpen ? "tree-node__mark_active" : ""
+            isActive ? "tree-node__mark_active" : ""
           }`}
         ></div>
         <Link
@@ -39,7 +41,12 @@ function TreeNode({ node }) {
         >
           <img
             className="tree-node__icon"
-            src={isChildren() ? ArrowIcon : FileIcon}
+            src={isChildren() ? ArrowIcon : ""}
+            alt=" "
+          ></img>
+          <img
+            className="tree-node__icon"
+            src={isChildren() ? FolderIcon : FileIcon}
           ></img>
           <div className="tree-node__text">{label}</div>
         </Link>

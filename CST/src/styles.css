@@ -3,7 +3,6 @@
 :root {
   --background: #121212;
   --onbackground: #fff;
-  --secondary: #F5DE19;
   --high: 0.87;
   --medium: 0.6;
   --disabled: 0.38;
@@ -160,7 +159,6 @@
 .tree-node-wrapper {
   display: flex;
   flex-direction: column;
-
 }
 
 .tree-view {
@@ -176,7 +174,7 @@
 }
 
 .tree-node__mark {
-  height: 28px;
+  height: 1.5rem;
   width: 4px;
   border-radius: 2px;
   border: 1px solid transparent;
@@ -184,7 +182,7 @@
 }
 
 .tree-node__mark_active {
-  background-color: var(--secondary);
+  background-color: #1adcff;
 }
 
 .tree-node__link {
@@ -198,18 +196,13 @@
 }
 
 .tree-node__link:hover {
-  background-color: rgba(213, 213, 213, 0.3)
+  background-color: rgba(213, 213, 213, 0.3);
 }
 
 .tree-node__icon {
   height: 1rem;
   width: 1rem;
   justify-self: center;
-  margin-left: 1rem;
 }
-
-
-
-
 
 /* NOTES */
